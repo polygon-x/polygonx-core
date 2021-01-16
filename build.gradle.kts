@@ -26,11 +26,13 @@ application {
 
 dependencies {
   implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
+  implementation("io.vertx:vertx-auth-jwt")
   implementation("io.vertx:vertx-web-validation")
   implementation("io.vertx:vertx-sql-client-templates")
   implementation("io.vertx:vertx-web")
   implementation("io.vertx:vertx-pg-client")
   implementation("io.vertx:vertx-json-schema")
+  implementation("org.mindrot:jbcrypt:0.4")
   testImplementation("io.vertx:vertx-junit5")
   testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
