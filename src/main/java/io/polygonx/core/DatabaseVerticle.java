@@ -27,16 +27,12 @@ public class DatabaseVerticle extends AbstractVerticle {
 
     AuthServiceImpl authService = AuthService.create(client);
 
-    vertx.eventBus().localConsumer("auth.login").handler(msg -> {
-      authService.login((JsonObject) msg.body())
-        .onSuccess(msg::reply)
-        .onFailure(Throwable::printStackTrace);
-    });
+    vertx.eventBus().localConsumer("auth.login").handler(msg -> authService.login((JsonObject) msg.body())
+      .onSuccess(msg::reply)
+      .onFailure(Throwable::printStackTrace));
 
-    vertx.eventBus().localConsumer("auth.register").handler(msg -> {
-      authService.register((JsonObject) msg.body())
-        .onSuccess(v -> msg.reply(true))
-        .onFailure(e -> msg.reply(false));
-    });
+    vertx.eventBus().localConsumer("auth.register").handler(msg -> authService.register((JsonObject) msg.body())
+      .onSuccess(v -> msg.reply(true))
+      .onFailure(e -> msg.reply(false)));
   }
 }

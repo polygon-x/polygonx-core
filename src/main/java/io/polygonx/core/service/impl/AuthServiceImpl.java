@@ -42,7 +42,7 @@ public class AuthServiceImpl implements AuthService {
                 )
                 .onFailure(promise::fail);
             } else {
-              object.put("message", "user is disabled not!");
+              object.put("message", "user is disabled now!");
             }
           } else {
             object.put("message", "username is not match password!");

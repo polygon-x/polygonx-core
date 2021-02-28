@@ -11,8 +11,8 @@ public class User {
   private Boolean enabled;
   private String lastLoginIP;
   private LocalDateTime lastLoginTime;
-  private LocalDateTime createdAt;
-  private LocalDateTime updatedAt;
+  private LocalDateTime createdTime;
+  private LocalDateTime updatedTime;
 
   public User() {
   }
@@ -73,20 +73,20 @@ public class User {
     this.lastLoginTime = lastLoginTime;
   }
 
-  public LocalDateTime getCreatedAt() {
-    return createdAt;
+  public LocalDateTime getCreatedTime() {
+    return createdTime;
   }
 
-  public void setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
+  public void setCreatedTime(LocalDateTime createdTime) {
+    this.createdTime = createdTime;
   }
 
-  public LocalDateTime getUpdatedAt() {
-    return updatedAt;
+  public LocalDateTime getUpdatedTime() {
+    return updatedTime;
   }
 
-  public void setUpdatedAt(LocalDateTime updatedAt) {
-    this.updatedAt = updatedAt;
+  public void setUpdatedTime(LocalDateTime updatedTime) {
+    this.updatedTime = updatedTime;
   }
 
   @Override
@@ -94,12 +94,12 @@ public class User {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     User user = (User) o;
-    return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(enabled, user.enabled) && Objects.equals(lastLoginIP, user.lastLoginIP) && Objects.equals(lastLoginTime, user.lastLoginTime) && Objects.equals(createdAt, user.createdAt) && Objects.equals(updatedAt, user.updatedAt);
+    return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(enabled, user.enabled) && Objects.equals(lastLoginIP, user.lastLoginIP) && Objects.equals(lastLoginTime, user.lastLoginTime) && Objects.equals(createdTime, user.createdTime) && Objects.equals(updatedTime, user.updatedTime);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, email, password, enabled, lastLoginIP, lastLoginTime, createdAt, updatedAt);
+    return Objects.hash(id, username, email, password, enabled, lastLoginIP, lastLoginTime, createdTime, updatedTime);
   }
 
   @Override
@@ -112,8 +112,8 @@ public class User {
       ", enabled=" + enabled +
       ", lastLoginIP='" + lastLoginIP + '\'' +
       ", lastLoginTime=" + lastLoginTime +
-      ", createdAt=" + createdAt +
-      ", updatedAt=" + updatedAt +
+      ", createdTime=" + createdTime +
+      ", updatedTime=" + updatedTime +
       '}';
   }
 }
