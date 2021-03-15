@@ -1,6 +1,7 @@
 package io.polygonx.core;
 
 import io.polygonx.core.service.AuthService;
+import io.polygonx.core.service.ContestService;
 import io.polygonx.core.service.impl.AuthServiceImpl;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
@@ -26,6 +27,7 @@ public class DatabaseVerticle extends AbstractVerticle {
     PgPool client = PgPool.pool(vertx, connectOptions, poolOptions);
 
     AuthServiceImpl authService = AuthService.create(client);
+    ContestService contestService = ContestService.create(client);
 
     vertx.eventBus().localConsumer("auth.login").handler(msg -> authService.login((JsonObject) msg.body())
       .onSuccess(msg::reply)
@@ -34,5 +36,9 @@ public class DatabaseVerticle extends AbstractVerticle {
     vertx.eventBus().localConsumer("auth.register").handler(msg -> authService.register((JsonObject) msg.body())
       .onSuccess(v -> msg.reply(true))
       .onFailure(e -> msg.reply(false)));
+
+    vertx.eventBus().localConsumer("contest.getCurrentContest").handler(msg -> contestService.getCurrentContest()
+      .onSuccess(msg::reply)
+      .onFailure(Throwable::printStackTrace));
   }
 }

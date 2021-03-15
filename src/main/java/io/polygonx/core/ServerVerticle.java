@@ -99,6 +99,16 @@ public class ServerVerticle extends AbstractVerticle {
           .onFailure(ctx::fail);
       });
 
+    router.get("/contest")
+      .handler(ctx -> {
+        vertx.eventBus().request("contest.getCurrentContest", null)
+          .onSuccess(msg -> {
+            JsonObject contest = (JsonObject) msg.body();
+            ctx.response().end(contest.encodePrettily());
+          })
+          .onFailure(ctx::fail);
+      });
+
     vertx.createHttpServer()
       .requestHandler(router)
       .listen(8080)
